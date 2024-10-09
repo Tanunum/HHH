@@ -1,0 +1,239 @@
+---
+assignments_2_student:
+  state: hidden
+  display_name: Assignment Enhancements - Student
+  description:
+    wrapper: <a href="https://community.canvaslms.com/t5/Assignment-Enhancements-Users/gh-p/student_enhancements">\1</a>
+    assignments_2_student_description: This feature enhances the assignment submission and feedback workflow for students. When this flag is enabled, early access to ongoing improvements will be displayed automatically with every release. For full details, please see the *Assignment Enhancements User Group* in the Canvas Community.
+  applies_to: Course
+  root_opt_in: true
+  beta: true
+
+assignments_2_teacher:
+  state: hidden
+  display_name: Assignments 2 Teacher View
+  description: Use the new assignments teacher page
+  applies_to: Course
+  root_opt_in: true
+  environments:
+    production:
+      state: disabled
+
+confetti_branding:
+  state: 'hidden'
+  display_name: 'Account branding for confetti'
+  description: Applies account branding to confetti splashes
+  applies_to: SiteAdmin
+
+course_paces:
+  state: hidden
+  display_name: 'Course Pacing'
+  description:
+    wrapper: <a href="https://community.canvaslms.com/t5/Course-Pacing-Feature-Preview/gh-p/course_pacing">\1</a>
+    course_paces_description: |-
+      Course Pacing adds support for rolling enrollments to Canvas;
+      automatically distributing due dates for students with different
+      start dates based on an instructor's defined pace. Learn more and give
+      feedback by joining the *Course Pacing User Group*.
+  applies_to: Account
+  beta: true
+  environments:
+    development:
+      state: allowed_on
+    beta:
+      state: allowed_on
+    ci:
+      state: allowed_on
+
+create_course_subaccount_picker:
+  state: hidden
+  applies_to: RootAccount
+  display_name: 'Allow sub-account selection when users manually create courses'
+  description: |-
+    Rather than automatically placing manually created courses into the
+    "Manually Created Courses" sub-account, when enabled, this feature allows
+    people who can manually create courses to put those courses into any sub-account
+    where they have enrollments.
+
+enhanced_course_creation_account_fetching:
+  applies_to: SiteAdmin
+  state: hidden
+  display_name: 'Use a new endpoint for fetching course creation accounts'
+  description: Use new improved logic to fetch all accounts a user can create courses in.
+
+account_level_blackout_dates:
+  applies_to: SiteAdmin
+  state: hidden
+  display_name: Account-level course pacing blackout dates
+  description: |-
+    Allow course pacing blackout dates to be set for accounts instead of just courses.
+
+render_both_to_do_lists:
+  applies_to: SiteAdmin
+  state: hidden
+  display_name: Render both To Do lists for teachers with student enrollments
+  description: |-
+    Renders both To Do lists on the dashboard sidebar for teachers with student enrollments.
+
+course_paces_for_students:
+  state: hidden
+  display_name: 'Per Student Course Paces'
+  description: Enable unique course paces for students.
+  applies_to: SiteAdmin
+
+course_paces_redesign:
+  state: hidden
+  display_name: 'Course Pacing Redesign'
+  description: Enable the redesigned course pacing user experience.
+  applies_to: SiteAdmin
+
+blueprint_line_item_support:
+  state: hidden
+  display_name: 'Blueprint Resource ID Support'
+  description: Allows blueprint courses to keep track of assignment's resource id changes.
+  applies_to: SiteAdmin
+
+content_migration_asset_map_v2:
+  state: hidden
+  display_name: Content Migration Asset Map v2
+  description: Adds Additional Fields to the Content Migration Asset Map
+  applies_to: SiteAdmin
+
+instui_for_import_page:
+  state: hidden
+  display_name: Use InstUI for the course import page
+  description: |-
+    If enabled, the course import page will use InstUI components
+  applies_to: SiteAdmin
+
+selective_release_backend:
+  state: hidden
+  display_name: Selective Release - Backend Changes
+  description: |-
+    Selective Release is a feature that allows modules and module items to
+    be assigned to specific individuals and groups. This is the first of two flags
+    that must be enabled to use this feature. When this flag is enabled, the
+    transparent backend changes that support assigning modules and module items will
+    be enabled. As long as no module-type AssignmentOverrides exist, enabling this
+    feature is backwards-compatible, and exists to ensure that the backend changes
+    are performant.
+  applies_to: SiteAdmin
+  environments:
+    ci:
+      state: allowed_on # enable for automated testings builds and local testing
+    development:
+      state: allowed_on # enable for local development
+
+selective_release_ui_api:
+  state: hidden
+  display_name: Selective Release - UI/API Changes
+  description: |-
+    Selective Release is a feature that allows modules and module items to
+    be assigned to specific individuals and groups. The selective_release_backend
+    flag MUST be enabled before this flag can be enabled. When this flag is enabled,
+    the UI and API that allow users to create module-type AssignmentOverrides will be
+    enabled, and thus the feature will be fully functional.
+  applies_to: SiteAdmin
+  environments:
+    ci:
+      state: allowed_on # enable for automated testings builds and local testing
+    development:
+      state: allowed_on # enable for local development
+
+selective_release_edit_page:
+  state: hidden
+  display_name: Selective Release - Edit Page
+  description: |-
+    If enabled, with selective release the edit page for assignments, quizzes, pages,
+    and discussions will have the assign to functionality directly in the page instead
+    of in a tray.
+  applies_to: SiteAdmin
+  environments:
+    ci:
+      state: allowed_on # enable for automated testings builds and local testing
+    development:
+      state: allowed_on # enable for local development
+
+selective_release_optimized_services:
+  state: hidden
+  applies_to: SiteAdmin
+  display_name: 'Selective Release - Optimized Visibility Services - Five Queries'
+  description: |-
+    Optimized the visibility services used by Selective Release.
+
+selective_release_optimized_services_v2:
+  state: hidden
+  applies_to: SiteAdmin
+  display_name: 'Selective Release - Optimized Visibility Services - Three Queries'
+  description: |-
+    Optimized the visibility services used by Selective Release.
+
+selective_release_optimized_services_v3:
+  state: hidden
+  applies_to: SiteAdmin
+  display_name: 'Selective Release - Optimized Visibility Services - One Query'
+  description: |-
+    Optimized the visibility services used by Selective Release.
+  environments:
+    ci:
+      state: allowed_on
+    development:
+      state: allowed_on
+
+differentiated_files:
+  state: hidden
+  display_name: Selective Release - Files
+  description: |-
+    If enabled, files become assignable to specific individuals and groups using the
+    same interface that other learning object use.
+  applies_to: SiteAdmin
+
+observer_appointment_groups:
+  applies_to: SiteAdmin
+  state: hidden
+  display_name: Allow observers to schedule appointments in the calendar
+  description: |-
+    When enabled, teachers can choose to allow observers to schedule appointments
+    when creating appointment groups in the calendar.
+  environments:
+    ci:
+      state: allowed_on
+    development:
+      state: allowed_on
+
+instui_header:
+  state: hidden
+  display_name: Use InstUI new headers
+  description: |-
+    If enabled, pages will use the new InstUI headers
+  applies_to: SiteAdmin
+
+dashboard_graphql_integration:
+  state: hidden
+  display_name: Dashboard GraphQL Integration
+  description: |-
+    Integrate GraphQL queries and mutations for the Dashboard to improve loading speed
+    and simplify data fetching logic.
+  applies_to: SiteAdmin
+
+modules_page_hide_blueprint_lock_icon_for_children:
+  state: hidden
+  display_name: Hide Blueprint Lock Icon on child course Modules Page
+  description: |-
+    If enabled, the blueprint lock icon will be hidden on the modules page. This is a performance hack and should only
+    be used for customers with a large number of content items (2000+) in a course.
+  applies_to: Account
+
+modules_teacher_module_selection:
+  state: hidden
+  display_name: Allow teachers to select a single module to show on the modules page for teachers
+  description: |-
+    If enabled, teachers will be able to a single module to show on the modules page for teachers.
+  applies_to: Account
+
+modules_student_module_selection:
+  state: hidden
+  display_name: Allow teachers to select a single module to show on the modules page for students
+  description: |-
+    If enabled, teachers will be able to a single module to show on the modules page for students.
+  applies_to: Account

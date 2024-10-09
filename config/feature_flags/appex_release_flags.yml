@@ -1,0 +1,44 @@
+jobs_v2:
+  state: allowed
+  display_name: Jobs v2
+  description: |-
+    New and improved jobs control panel
+  applies_to: SiteAdmin
+feature_flag_test:
+  state: allowed
+  applies_to: SiteAdmin
+  display_name: Test Feature Flag
+  description: This flag is a no-op and is only intended for testing.
+verify_ldap_certs:
+  state: hidden
+  shadow: true
+  display_name: Verify LDAP TLS certificates
+  description: Verify TLS certificates presented by LDAP authentication providers.
+  applies_to: Account
+admin_manage_access_tokens:
+  state: hidden
+  display_name: Admin Manage Access Tokens
+  description: Limit the ability to manage access tokens to admins only.
+  applies_to: RootAccount
+oidc_rp_initiated_logout_params:
+  state: allowed
+  applies_to: RootAccount
+  display_name: OpenID Connect RP Initiated Logout Parameters
+  description: Enables sending additional parameters (client_id, post_logout_redirect_uri, and id_token_hint) to the `end_session_endpoint` when logging out of Canvas.
+oidc_full_token_validation:
+  state: allowed
+  applies_to: RootAccount
+  display_name: Perform Full Validation of OpenID Connect ID Tokens
+  description: Performs full validation of OpenID Connect ID Tokens, including requiring issuer, nonce, and expiration claims.
+login_registration_ui_identity:
+  state: hidden
+  applies_to: RootAccount
+  display_name: New Login/Registration UI for Identity
+  description: Rework the Login/Registration UI to support Identity changes, ensuring a uniform login experience and transparent auth migration.
+  environments:
+    development:
+      state: allowed
+    beta:
+      state: hidden
+    production:
+      state: hidden

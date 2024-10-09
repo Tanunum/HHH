@@ -1,0 +1,21 @@
+<div class="radio">
+  <label>
+    <input type="radio" name="selective_import" value=false>
+    {{#t "select_all_content"}}All content{{/t}}
+  </label>
+  <label>
+    {{#t "select_all_content_subtext"}}Note the following content types will be imported: Course Settings, Syllabus Body, Modules, Assignments, Quizzes, Question Banks, Discussion Topics, Pages, Announcements, Rubrics, Files, and Calendar Events.{{/t}}
+  </label>
+</div>
+
+{{#if ENV.BLUEPRINT_ELIGIBLE_IMPORT}}
+   <div class="importBlueprintSettings" style="margin-left: 2em"></div>
+{{/if}}
+
+<div class="radio">
+  <label>
+    <input type="radio" name="selective_import" value=true>
+    {{#t "select_specific_content"}}Select specific content{{/t}}
+  </label>
+</div>
+

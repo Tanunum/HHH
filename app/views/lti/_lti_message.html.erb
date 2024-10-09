@@ -1,0 +1,65 @@
+<%
+# Copyright (C) 2014 - present Instructure, Inc.
+#
+# This file is part of Canvas.
+#
+# Canvas is free software: you can redistribute it and/or modify it under
+# the terms of the GNU Affero General Public License as published by the Free
+# Software Foundation, version 3 of the License.
+#
+# Canvas is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+# A PARTICULAR PURPOSE. See the GNU Affero General Public License for more
+# details.
+#
+# You should have received a copy of the GNU Affero General Public License along
+# with this program. If not, see <http://www.gnu.org/licenses/>.
+%>
+
+<%
+  form_submission_delay = Setting.get("interop_8200_delay_form_submit_#{@domain_root_account.global_id}", nil)
+  if form_submission_delay.present?
+    js_env({
+      LTI_FORM_SUBMIT_DELAY: form_submission_delay,
+    })
+  end
+%>
+
+<% provide :page_title do %><%= @lti_launch.link_text %><% end %>
+
+<% js_bundle :external_tools_show %>
+<% js_bundle :external_tool_redirect if @redirect_return %>
+
+<%= render @prepend_template if @prepend_template %>
+
+<% provide :right_side, render(:partial => "lti/conditional_submission_sidebar") %>
+
+
+<% if @lti_launch.resource_url.start_with?('http://') %>
+    <div class="alert alert-error" id="insecure_content_msg">
+        <p><%= t('You are trying to launch insecure content from within a secure site (canvas).  Some web browsers may prevent this content from loading.') %></p>
+        <p id="load_failure" class="hide"><%= t('It looks like your content might not load.  You can use this button to try launching it in a new tab.') %></p>
+    </div>
+<% end %>
+
+<%= render partial: "lti/launch_iframe" %>
+
+<% js_bundle :edit_rubric %>
+
+<% if @assignment.present? && !@assignment.quiz_lti? && can_do(@assignment, @current_user, :update) %>
+  <div class="content-box">
+    <a
+      href="<%= context_url(@context, :context_rubrics_url) %>"
+      class="add_rubric_link Button icon-plus"
+      style="<%= hidden if @assignment.active_rubric_association? %>"
+    >
+      <span aria-hidden="true"><%= t 'links.add_rubric', "Rubric" %></span>
+      <span class="screenreader-only"><%= t('Add Rubric') %></span>
+    </a>
+  </div>
+<% end %>
+
+<%= render partial: "shared/rubrics_component" if @assignment.present? && !@assignment.quiz_lti? %>
+
+<%= render @append_template if @append_template %>
+<div id="module_sequence_footer"></div>
